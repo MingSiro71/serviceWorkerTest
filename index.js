@@ -9,7 +9,7 @@ const checkRequirements = () => {
 
 const registerServiceWorker = async () => {
     console.log('install start.');
-    return await navigator.serviceWorker.register('./js/workers/serviceWorker.js');
+    return await navigator.serviceWorker.register('serviceWorker.js');
 }
 
 const requestNotificationPermission = async () => {
