@@ -14,14 +14,14 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', async (event) => {
     console.log('activated.');
-    event.waitUntil(clients.claim());
-    try {
-        const options = {}
-        const subscription = await self.registration.pushManager.subscribe(options)
-        console.log(JSON.stringify(subscription));
-      } catch (error) {
-        console.log(error)
-      }
+    // event.waitUntil(clients.claim());
+    // try {
+    //     const options = {}
+    //     const subscription = await self.registration.pushManager.subscribe(options)
+    //     console.log(JSON.stringify(subscription));
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
 });
 
 const showLocalNotification = (title, body, serviceWorkerRegistration) => {
