@@ -41,5 +41,20 @@ self.addEventListener('message', (event) => {
     if (event.data.type === 'PING') {
         console.log('send notification.');
         showLocalNotification('something happened!', 'check it!', self.registration);
+        self.clients.matchAll({
+            includeUncontrolled: true,
+            type: 'window', 
+        }).then((clients) => {
+            if (!clients) {
+                return;
+            }
+            clients.map((client) => {
+                console.log(client);
+                client.postMessage({
+                    type: 'PONG',
+                    serviceWorker: self,
+                })
+            })
+        });
     }
 });

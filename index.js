@@ -63,3 +63,7 @@ const communicateServiceWorker = () => {
         type: 'PING'
     });
 }
+
+navigator.serviceWorker.onmessage = (event) => {
+    console.log(event);
+}
