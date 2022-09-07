@@ -59,6 +59,9 @@ const enablePushService = async () => {
 
 const communicateServiceWorker = () => {
     console.log(navigator.serviceWorker);
+    if (!navigator.serviceWorker.controller) {
+        return;
+    }
     navigator.serviceWorker.controller.postMessage({
         type: 'PING'
     });
