@@ -14,7 +14,7 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', async (event) => {
     console.log('activated.');
-    event.waitUntil(clients.claim());
+    event.waitUntil(self.clients.claim());
 });
 
 const showLocalNotification = (title, body, serviceWorkerRegistration) => {
