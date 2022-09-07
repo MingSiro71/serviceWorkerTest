@@ -17,25 +17,6 @@ const requestNotificationPermission = async () => {
     return permission === 'granted';
 }
 
-// const showLocalNotification = (title, body, serviceWorkerRegistration) => {
-//     serviceWorkerRegistration.showNotification(title, {
-//         body,
-//         // icon,
-//         // image,
-//         // badge,
-//         // vibrate,
-//         // sound,
-//         dir: 'auto',
-//         // tag,
-//         // data,
-//         // requireInteraction,
-//         // renotify",
-//         // silent,
-//         // actions,
-//         // timestamp,
-//     });
-// }
-
 const enablePushService = async () => {
     checkRequirements();
 
