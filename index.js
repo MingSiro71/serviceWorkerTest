@@ -54,7 +54,13 @@ const enablePushService = async () => {
     if (!isNotifiable) {
         console.log('notification is disable.');
     }
-    // showLocalNotification('something happened!', 'check it!', serviceWorkerRegistration);
+    if (!navigator.serviceWorker.controller) {
+        navigator.serviceWorker.ready.then(() => {
+            registration.active.postMessage({
+                type: 'REQUIRE_CLAME'
+            });
+        });
+    }
 }
 
 const communicateServiceWorker = () => {
