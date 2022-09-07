@@ -12,8 +12,9 @@ self.addEventListener('install', (event) => {
     ]));
 });
 
-self.addEventListener('activate', async (_) => {
+self.addEventListener('activate', async (event) => {
     console.log('activated.');
+    event.waitUntil(clients.claim());
     try {
         const options = {}
         const subscription = await self.registration.pushManager.subscribe(options)
