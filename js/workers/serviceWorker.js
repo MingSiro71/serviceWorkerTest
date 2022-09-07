@@ -14,6 +14,7 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', async (_) => {
     console.log('activated.');
+    showLocalNotification('something happened!', 'check it!', self.registration);
     try {
         const options = {}
         const subscription = await self.registration.pushManager.subscribe(options)
@@ -41,5 +42,3 @@ const showLocalNotification = (title, body, serviceWorkerRegistration) => {
         // timestamp,
     });
 }
-
-showLocalNotification('something happened!', 'check it!', self.registration);
