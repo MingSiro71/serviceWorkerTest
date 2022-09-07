@@ -10,11 +10,26 @@ const registerServiceWorker = async () => {
 
 const requestNotificationPermission = async () => {
     const permission = await window.Notification.requestPermission();
-    console.log(permission);
-    if (!permission) {
-        throw new Error('notification not permitted.')
-    }
-    return permission;
+    return permission === 'granted';
+}
+
+const showLocalNotification = (title, body, serviceWorkerRegistration) => {
+    serviceWorkerRegistration.showNotification(title, {
+        body,
+        // icon,
+        // image,
+        // badge,
+        // vibrate,
+        // sound,
+        dir: 'auto',
+        // tag,
+        // data,
+        // requireInteraction,
+        // renotify",
+        // silent,
+        // actions,
+        // timestamp,
+    });
 }
 
 const run = async () => {
@@ -29,7 +44,11 @@ const run = async () => {
     console.log('serviceWorker installed.', serviceWorker);
     console.log(serviceWorker.scriptURL, serviceWorker.state);
 
-    const permission = await requestNotificationPermission();
+    const isNotifiable = await requestNotificationPermission();
+    if (!isNotifiable) {
+        console.log('notification is disable.');
+    }
+    showLocalNotification('something happened!', 'check it!', serviceWorkerRegistration);
 }
 
 window.onload = run;
