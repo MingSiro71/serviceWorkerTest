@@ -1,11 +1,15 @@
-const registerServiceWorker = async () => {
+const checkRequirements = () => {
     if (!navigator.serviceWorker) {
-        console.log('serviceWorker is not supported.');
-        return;
-    } else {
-        console.log('install start.');
-        return await navigator.serviceWorker.register('./js/workers/serviceWorker.js');
+        throw new Error('serviceWorker is not supported.');
     }
+    if (!window.PushManager) {
+        throw new Error('Push API is not supported.');
+    }
+}
+
+const registerServiceWorker = async () => {
+    console.log('install start.');
+    return await navigator.serviceWorker.register('./js/workers/serviceWorker.js');
 }
 
 const requestNotificationPermission = async () => {
@@ -13,26 +17,28 @@ const requestNotificationPermission = async () => {
     return permission === 'granted';
 }
 
-const showLocalNotification = (title, body, serviceWorkerRegistration) => {
-    serviceWorkerRegistration.showNotification(title, {
-        body,
-        // icon,
-        // image,
-        // badge,
-        // vibrate,
-        // sound,
-        dir: 'auto',
-        // tag,
-        // data,
-        // requireInteraction,
-        // renotify",
-        // silent,
-        // actions,
-        // timestamp,
-    });
-}
+// const showLocalNotification = (title, body, serviceWorkerRegistration) => {
+//     serviceWorkerRegistration.showNotification(title, {
+//         body,
+//         // icon,
+//         // image,
+//         // badge,
+//         // vibrate,
+//         // sound,
+//         dir: 'auto',
+//         // tag,
+//         // data,
+//         // requireInteraction,
+//         // renotify",
+//         // silent,
+//         // actions,
+//         // timestamp,
+//     });
+// }
 
-const run = async () => {
+const enablePushService = async () => {
+    checkRequirements();
+
     const serviceWorkerRegistration = await registerServiceWorker();
     if (!serviceWorkerRegistration instanceof ServiceWorkerRegistration) {
         console.error(serviceWorkerRegistration);
@@ -48,7 +54,5 @@ const run = async () => {
     if (!isNotifiable) {
         console.log('notification is disable.');
     }
-    showLocalNotification('something happened!', 'check it!', serviceWorkerRegistration);
+    // showLocalNotification('something happened!', 'check it!', serviceWorkerRegistration);
 }
-
-window.onload = run;
