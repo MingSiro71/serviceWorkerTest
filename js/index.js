@@ -23,7 +23,9 @@ const run = async () => {
         console.error(serviceWorkerRegistration);
         return;
     }
-    const serviceWorker = registration.installing || registration.waiting || registration.active;
+    const serviceWorker = serviceWorkerRegistration.installing
+        || serviceWorkerRegistration.waiting
+        || serviceWorkerRegistration.active;
     console.log('serviceWorker installed.', serviceWorker);
     console.log(serviceWorker.scriptURL, serviceWorker.state);
 
