@@ -56,7 +56,7 @@ const enablePushService = async () => {
     }
     if (!navigator.serviceWorker.controller) {
         navigator.serviceWorker.ready.then(() => {
-            registration.active.postMessage({
+            serviceWorker.postMessage({
                 type: 'REQUIRE_CLAME'
             });
         });

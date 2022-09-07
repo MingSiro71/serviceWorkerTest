@@ -58,7 +58,7 @@ self.addEventListener('message', (event) => {
             })
         });
     } else if (event.data.type === 'REQUIRE_CLAME') {
-        console.log('require clame');
+        console.log('require clame', self.clients);
         event.waitUntil(self.clients.claim());
     }
 });
