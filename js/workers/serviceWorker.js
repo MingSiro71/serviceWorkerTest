@@ -5,7 +5,7 @@ const addResourcesToCache = async (resources) => {
 
 self.addEventListener('install', (event) => {
     console.log('installed.');
-    event.waitUntill(addResourcesToCache([
+    event.waitUntil(addResourcesToCache([
         // resource files to cache here.
     ]));
 });

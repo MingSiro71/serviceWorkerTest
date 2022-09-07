@@ -5,8 +5,9 @@ const installServiceWorker = () => {
         console.log('install start.');
         navigator.serviceWorker.register('./js/workers/serviceWorker.js')
             .then(
-                () => {
-                    console.log('serviceWorker installed.');
+                (registration) => {
+                    const serviceWorker = registration.installing || registration.waiting || registration.active;
+                    console.log('serviceWorker installed.', serviceWorker);
                 },
                 (error) => {
                     console.error(error);
