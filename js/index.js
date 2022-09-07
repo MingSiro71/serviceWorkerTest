@@ -15,3 +15,4 @@ const installServiceWorker = () => {
     }
 }
 
+window.onload = installServiceWorker;
