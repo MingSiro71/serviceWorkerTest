@@ -30,4 +30,4 @@ const run = async () => {
     const permission = await requestNotificationPermission();
 }
 
-document.onload = run;
+window.onload = run;
