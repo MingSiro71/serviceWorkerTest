@@ -56,3 +56,9 @@ const enablePushService = async () => {
     }
     // showLocalNotification('something happened!', 'check it!', serviceWorkerRegistration);
 }
+
+const communicateServiceWorker = () => {
+    navigator.serviceWorker.controller.postMessage({
+        type: 'PING'
+    });
+}

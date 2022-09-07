@@ -14,7 +14,6 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', async (_) => {
     console.log('activated.');
-    showLocalNotification('something happened!', 'check it!', self.registration);
     try {
         const options = {}
         const subscription = await self.registration.pushManager.subscribe(options)
@@ -42,3 +41,11 @@ const showLocalNotification = (title, body, serviceWorkerRegistration) => {
         // timestamp,
     });
 }
+
+self.addEventListener('message', (event) => {
+    console.debug(event.data.type);
+    if (event.data.type === 'PING') {
+        console.log('send notification.');
+        showLocalNotification('something happened!', 'check it!', self.registration);
+    }
+});
