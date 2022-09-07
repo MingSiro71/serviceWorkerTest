@@ -52,7 +52,7 @@ self.addEventListener('message', (event) => {
                 console.log(client);
                 client.postMessage({
                     type: 'PONG',
-                    serviceWorker: self,
+                    time: Date.now(),
                 })
             })
         });
